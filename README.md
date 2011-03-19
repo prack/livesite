@@ -10,11 +10,11 @@ stack using [php-rack](http://github.com/prack/php-rack).
 Dependencies
 ============
 
-Sandbox is built on top of [php-rack](http://github.com/prack/php-rack), which
+Sandbox is built on top of [php-rack](http://github.com/prack/php-rack) ("Prack"), which
 is in turn built on top of a "Rubification" library called 
-[php-ruby](http://github.com/prack/php-rb "Prb Homepage") ("Prb" for short).
+[php-ruby](http://github.com/prack/php-rb "Prb Homepage") ("Prb").
 
-Consequently, you'll need to clone both of these into a subdirectory of your choice.
+Consequently, you'll need to clone both of these into the 'lib' subdirectory.
 
 For more detailed instructions, see the "Getting Started" section below.
 
@@ -37,7 +37,7 @@ Getting started
 To view the sandbox in action, you'll need:
 
 1. A valid apache instance with php 5.2+ installed.
-2. Knowledge on configuring a virtual host, as there are (unfortunately) a few required
+2. Knowledge on configuring a host, as there are (unfortunately) a few required
    apache configuration directives.
 3. Clones of the support libraries in the 'lib/' subdirectory of your clone.
    You may consider using git submodules for this; or, if you're in a hurry, just clone
