@@ -80,8 +80,20 @@ A simple, quick-and-dirty setup might look like this:
 
 Barring any errors in your host configuration, your sandbox should run immediately.
 
-Play with it, checkout the other middleware included in php-rack. Add to the stack, delete
-from it... the world is your oyster. :)
+
+Domain
+------
+
+The website, when running, exposes the following applications at domain-level:
+
+* public website, at:                       <br /><pre>/</pre>
+* admin app (l: superadmin, p: secret), at: <br /><pre>/admin</pre>
+* static asset server, at:                  <br /><pre>/public</pre>
+* pretty exception handler, at:             <br /><pre>/thrower</pre>
+
+To understand how Prack is working, inspect the displayed "environment information" closely!
+Also, look at the stack built in rackup.php. Change it, too, whatever you want. Prack comes
+with some perfectly useable middleware.
 
 
 Acknowledgments

@@ -18,10 +18,12 @@ class Sandbox_Showenv
 		$response = $this->middleware_app->call( $env )->toA();
 		
 		ob_start();
-		  var_dump( $env );
-		$env_dump = Prb::_String( ob_get_clean() );
+		  $templates = $env->get( 'sandbox.templates' );
+		  include( join( DIRECTORY_SEPARATOR, array( $templates->raw(), '_env.html.php' ) ) );
+		$pretty_env = ob_get_clean(); // NOT a wrapped string
 		
-		$response->get( 2 )->concat( $env_dump );
+		// Didn't want to fiddle with XQuery. Cheap, I know.
+		$response->get( 2 )->first()->gsubInPlace( '/<\/h1>/', Prb::_String( '</h1>'.$pretty_env ) );
 		
 		return $response;
 	}

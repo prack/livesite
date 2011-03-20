@@ -1,0 +1,21 @@
+body {
+	font-size: 0.9em;
+}
+
+div#runtime {
+	position: absolute;
+	right: 1em;
+	font-style: italic;
+	border-bottom: thin solid red;
+}
+
+table {
+    margin-left: 1em;
+    border:1px solid #ccc; border-collapse: collapse; background:white; width: 80%; }
+tbody td, tbody th { vertical-align:top; padding:2px 3px; }
+thead th {
+    padding:1px 6px 1px 3px; background:#fefefe; text-align:left;
+    font-weight:normal; font-size:11px; border:1px solid #ddd; }
+tbody th { text-align:right; color:#666; padding-right:.5em; }
+table.vars { margin:5px 0 2px 40px; }
+table.vars td, table.req td { font-family:monospace; }
