@@ -33,7 +33,7 @@ $domain = Prack_Builder::domain()
     ->run( new Sandbox_Public() )
 
   ->map( '/admin' )
-    ->using( 'Prack_Auth_Basic'    )->withArgs( Prb::Str( 'sandbox realm' ), $auth_callback )->build()
+    ->using( 'Prack_Auth_Basic'    )->withArgs( Prb::Str( 'sandbox admin site' ), $auth_callback )->build()
     ->using( 'Sandbox_Showenv'     )->build()
     ->using( 'Sandbox_Showruntime' )->build()
     ->using( 'Prack_Runtime'       )->build()
