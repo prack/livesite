@@ -9,14 +9,14 @@ $auth_callback = create_function(
 	'return ( $username->raw() == "superadmin" && $password->raw() == "secret" );'
 );
 
-$public    = Prb::_String( join( DIRECTORY_SEPARATOR, array( dirname( __FILE__ ), 'public'    ) ) );
-$templates = Prb::_String( join( DIRECTORY_SEPARATOR, array( dirname( __FILE__ ), 'templates' ) ) );
+$public    = Prb::Str( join( DIRECTORY_SEPARATOR, array( dirname( __FILE__ ), 'public'    ) ) );
+$templates = Prb::Str( join( DIRECTORY_SEPARATOR, array( dirname( __FILE__ ), 'templates' ) ) );
 
 $domain = Prack_Builder::domain()
   ->using( 'Prack_Runtime'        )->build()
   ->using( 'Prack_ShowExceptions' )->build()
   ->using( 'Prack_Etag'           )->build()
-  ->using( 'Prack_ContentType'    )->withArgs( Prb::_String( 'text/html' ) )->build()
+  ->using( 'Prack_ContentType'    )->withArgs( Prb::Str( 'text/html' ) )->build()
 
   ->map( '/' )
     ->using( 'Sandbox_Showenv' )->build()
@@ -26,7 +26,7 @@ $domain = Prack_Builder::domain()
     ->run( new Prack_File( $public ) )
 
   ->map( '/admin' )
-    ->using( 'Prack_Auth_Basic' )->withArgs( Prb::_String( 'sandbox realm' ), $auth_callback )->build()
+    ->using( 'Prack_Auth_Basic' )->withArgs( Prb::Str( 'sandbox realm' ), $auth_callback )->build()
     ->using( 'Sandbox_Showenv'  )->build()
     ->run( new Sandbox_Admin() )
 
@@ -37,8 +37,8 @@ $domain = Prack_Builder::domain()
 ->toMiddlewareApp();
 
 $env = Prack_ModPHP_Compat::singleton()->extractEnv( $_SERVER );
-$env->set( 'sandbox.root'     , Prb::_String( dirname( __FILE__ ) ) );
-$env->set( 'sandbox.templates', Prb::_String( join( DIRECTORY_SEPARATOR, array( $env->get( 'sandbox.root' )->raw(), 'templates' ) ) ) );
+$env->set( 'sandbox.root'     , Prb::Str( dirname( __FILE__ ) ) );
+$env->set( 'sandbox.templates', Prb::Str( join( DIRECTORY_SEPARATOR, array( $env->get( 'sandbox.root' )->raw(), 'templates' ) ) ) );
 
 list( $status, $headers, $body ) = $domain->call( $env )->toA()->raw();
 $response = Prack_Response::with( $body, $status, $headers );
@@ -46,7 +46,7 @@ $response = Prack_Response::with( $body, $status, $headers );
 if ( $response->isOK() && !$env->get( 'SCRIPT_NAME' )->match( '/^public/' ) && $response->get( 'Content-Type' )->raw() == 'text/html' )
 {
 	$body = $response->getBody()->first();
-	$body->gsubInPlace( '/<body>/', Prb::_String(
+	$body->gsubInPlace( '/<body>/', Prb::Str(
 	  '<body><div id="runtime">Response time: '.$response->get( 'X-Runtime' )->raw().' seconds</div>'
 	) );
 }

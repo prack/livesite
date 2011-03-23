@@ -2,7 +2,7 @@
 
 // TODO: Document!
 class Sandbox_Admin
-  implements Prack_Interface_MiddlewareApp
+  implements Prack_I_MiddlewareApp
 {
 	private $body;
 	
@@ -14,12 +14,12 @@ class Sandbox_Admin
 		ob_start();
 		  $templates = $env->get( 'sandbox.templates' );
 		  include( join( DIRECTORY_SEPARATOR, array( $templates->raw(), 'admin.html.php' ) ) );
-		$output = Prb::_String( ob_get_clean() );
+		$output = Prb::Str( ob_get_clean() );
 		
-		return Prb::_Array( array(
-		  Prb::_Numeric( 200 ),
-		  Prb::_Hash(),
-		  Prb::_Array( array( $output ) )
+		return Prb::Ary( array(
+		  Prb::Num( 200 ),
+		  Prb::Hsh(),
+		  Prb::Ary( array( $output ) )
 		) );
 	}
 }

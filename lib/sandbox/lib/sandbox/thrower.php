@@ -2,7 +2,7 @@
 
 // TODO: Document!
 class Sandbox_Thrower
-  implements Prack_Interface_MiddlewareApp
+  implements Prack_I_MiddlewareApp
 {
 	// TODO: Document!
 	public function call( $env )

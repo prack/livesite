@@ -2,7 +2,7 @@
 
 // TODO: Document!
 class Sandbox_Showenv
-  implements Prack_Interface_MiddlewareApp
+  implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
 	
@@ -23,7 +23,7 @@ class Sandbox_Showenv
 		$pretty_env = ob_get_clean(); // NOT a wrapped string
 		
 		// Didn't want to fiddle with XQuery. Cheap, I know.
-		$response->get( 2 )->first()->gsubInPlace( '/<\/h1>/', Prb::_String( '</h1>'.$pretty_env ) );
+		$response->get( 2 )->first()->gsubInPlace( '/<\/h1>/', Prb::Str( '</h1>'.$pretty_env ) );
 		
 		return $response;
 	}
