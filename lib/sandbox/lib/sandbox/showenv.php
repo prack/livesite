@@ -15,16 +15,17 @@ class Sandbox_Showenv
 	// TODO: Document!
 	public function call( $env )
 	{
-		$response = $this->middleware_app->call( $env )->toA();
+		list( $status, $headers, $body ) = $this->middleware_app->call( $env )->raw();
 		
+		$response = Prack_Response::with( $body, $status, $headers );
 		ob_start();
 		  $templates = $env->get( 'sandbox.templates' );
 		  include( join( DIRECTORY_SEPARATOR, array( $templates->raw(), '_env.html.php' ) ) );
 		$pretty_env = ob_get_clean(); // NOT a wrapped string
 		
 		// Didn't want to fiddle with XQuery. Cheap, I know.
-		$response->get( 2 )->first()->gsubInPlace( '/<\/h1>/', Prb::Str( '</h1>'.$pretty_env ) );
+		$response->getBody()->first()->gsubInPlace( '/<\/h1>/', Prb::Str( '</h1>'.$pretty_env ) );
 		
-		return $response;
+		return $response->toA();
 	}
 }
