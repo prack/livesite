@@ -1,21 +1,42 @@
 body {
-	font-size: 0.9em;
+	margin: 0;
+	position: relative;
 }
 
-div#runtime {
+#navigation {
 	position: absolute;
+	top: 17.5em;
+	right: 1em;
+	background-color: #ddeeff;
+	border-radius: 1em/5em;
+	padding: 1em 0.5em 1em 1.5em;
+	list-style: none;
+	font-size: 0.9em;
+	list-style: none inside none;
+}
+
+#navigation p {
+	margin: 0.25em auto;
+	font-weight: bold;
+}
+
+#navigation li {
+	height: 1.5em;
+	line-height: 1.5em;
+	padding-left: 0.3em;
+}
+
+#runtimes {
+	position: absolute;
+	top: 10.5em;
 	right: 1em;
 	font-style: italic;
-	border-bottom: thin solid red;
+	background-color: #ffdddd;
+	border-radius: 1em/5em;
+	padding: 1em;
+	list-style: none;
 }
 
-table {
-    margin-left: 1em;
-    border:1px solid #ccc; border-collapse: collapse; background:white; width: 80%; }
-tbody td, tbody th { vertical-align:top; padding:2px 3px; }
-thead th {
-    padding:1px 6px 1px 3px; background:#fefefe; text-align:left;
-    font-weight:normal; font-size:11px; border:1px solid #ddd; }
-tbody th { text-align:right; color:#666; padding-right:.5em; }
-table.vars { margin:5px 0 2px 40px; }
-table.vars td, table.req td { font-family:monospace; }
+#body {
+	padding: 1em;
+}

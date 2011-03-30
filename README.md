@@ -16,8 +16,7 @@ is in turn built on top of a "Rubification" library called
 
 Consequently, you'll need to clone both of these into the 'lib' subdirectory.
 
-For more detailed instructions, see the "Getting Started" section below.
-
+Other than that, all you'll need to know about Prb is its <tt>logger</tt>.
 
 Classes
 =======
@@ -53,9 +52,9 @@ The file structure should look like this:
 
 And apache must serve this cloned directory configured thusly:
 
-	RewriteEngine On
 	DirectoryIndex rackup.php
-	SetEnvIf Request_URI (.*) X_PRACK_PATHINFO=$1
+	DirectorySlash Off
+	RewriteEngine On
 	RewriteCond %{REQUEST_URI} .+
 	RewriteRule .+ rackup.php [L]
 
@@ -87,8 +86,8 @@ Domain
 The website, when running, exposes the following applications at domain-level:
 
 * public website, at:                       <br /><pre>/</pre>
-* admin app (l: superadmin, p: secret), at: <br /><pre>/admin</pre>
-* static asset server, at:                  <br /><pre>/public</pre>
+* admin app (l: (anything), p: secret), at: <br /><pre>/admin</pre>
+* static asset server, at:                  <br /><pre>/static</pre>
 * pretty exception handler, at:             <br /><pre>/thrower</pre>
 
 To understand how Prack is working, inspect the displayed "environment information" closely!

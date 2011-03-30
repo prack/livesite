@@ -13,19 +13,18 @@ class Sandbox_Showenv
 	}
 	
 	// TODO: Document!
-	public function call( $env )
+	public function call( &$env )
 	{
-		list( $status, $headers, $body ) = $this->middleware_app->call( $env )->raw();
+		list( $status, $headers, $body ) = $this->middleware_app->call( $env );
 		
 		$response = Prack_Response::with( $body, $status, $headers );
 		ob_start();
-		  $templates = $env->get( 'sandbox.templates' );
-		  include( join( DIRECTORY_SEPARATOR, array( $templates->raw(), '_env.html.php' ) ) );
-		$pretty_env = ob_get_clean(); // NOT a wrapped string
+		  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], '_env.html.php' ) ) );
+		$pretty_env = ob_get_clean();
 		
 		// Didn't want to fiddle with XQuery. Cheap, I know.
-		$response->getBody()->first()->gsubInPlace( '/<\/h1>/', Prb::Str( '</h1>'.$pretty_env ) );
+		$body = preg_replace( '/<\/h1>/', '</h1>'.$pretty_env, $response->getBody() );
 		
-		return $response->toA();
+		return array( $status, $headers, $body );
 	}
 }
