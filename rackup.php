@@ -14,15 +14,15 @@ function onConfigure( &$env )
 
 function onAuthBasicAuthenticate( $username, $password )
 {
-	return $password == 'secret';
+	return ( $password == 'secret' );
 }
 
 $domain = Prack_Builder::domain()
 
   ->using( 'Prack_ContentLength'  )->build()
-  ->using( 'Sandbox_Showheaders'  )->build()
+  ->using( 'Sandbox_ShowHeaders'  )->build()
   ->using( 'Prack_ContentType'    )->withArgs( 'text/html' )->build()
-  ->using( 'Sandbox_Showruntimes' )->withArgs( array( 'Total', 'Public-Site', 'Admin-Site' ) )->build()
+  ->using( 'Sandbox_ShowRuntimes' )->withArgs( array( 'Total', 'Public-Site', 'Admin-Site' ) )->build()
   ->using( 'Prack_Runtime'        )->withArgs( 'Total' )->build()
   ->using( 'Prack_Config'         )->withCallback( 'onConfigure' )->build()
   ->using( 'Prack_ShowExceptions' )->build()
@@ -37,7 +37,7 @@ $domain = Prack_Builder::domain()
 
   ->map( '/admin' )
     ->using( 'Prack_Auth_Basic'    )->withArgs( 'sandbox admin site' )->andCallback( 'onAuthBasicAuthenticate' )->build()
-    ->using( 'Sandbox_Showenv'     )->build()
+    ->using( 'Sandbox_ShowEnv'     )->build()
     ->using( 'Prack_Runtime'       )->withArgs( 'Admin-Site' )->build()
     ->run( new Sandbox_Admin() )
 

@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_Showenv
+class Sandbox_ShowEnv
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;

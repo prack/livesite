@@ -1,4 +1,4 @@
-_This project is very much a work in progress. Feedback is welcome._
+_Prack is maturing rapidly, and needs early adopters. It is very well-tested._
 
 Sandbox
 =======
@@ -11,12 +11,12 @@ Dependencies
 ============
 
 Sandbox is built on top of [php-rack](http://github.com/prack/php-rack) ("Prack"), which
-is in turn built on top of a "Rubification" library called 
-[php-ruby](http://github.com/prack/php-rb "Prb Homepage") ("Prb").
+is in turn built on top of a primitive-wrapper library called 
+[php-rb](http://github.com/prack/php-rb "Prb Homepage") ("Prb").
 
-Consequently, you'll need to clone both of these into the 'lib' subdirectory.
+Consequently, you'll need to clone both of these into the <tt>lib</tt> subdirectory.
 
-Other than that, all you'll need to know about Prb is its <tt>logger</tt>.
+Other than that, all you'll need to know about Prb is its <tt>Logger</tt>.
 
 Classes
 =======
@@ -24,11 +24,12 @@ Classes
 Sandbox comes with just a few middleware applications, which are used in the domain
 created in rackup.php. here they are:
 
-* Showenv: appends a var_dump'ed representation of the environment on its way
-  out the middleware app stack.
-* Admin: Prints a welcome message to the logged in user.
-* Public: Prints a generit message to a visitor of the site to a non-admin section.
-
+* <tt>Admin</tt>: Responds to admin site requests.
+* <tt>Public</tt>: Responds to public site requests.
+* <tt>ShowEnv</tt>: Displays environment in response, if appropriate.
+* <tt>ShowHeaders</tt>: Displays response header information in response, if appropriate.
+* <tt>ShowRuntimes</tt>: Displays runtime information in response, if appropriate.
+* <tt>Thrower</tt>: Throws an exception.
 
 Getting started
 ===============
@@ -58,12 +59,15 @@ And apache must serve this cloned directory configured thusly:
 	RewriteCond %{REQUEST_URI} .+
 	RewriteRule .+ rackup.php [L]
 
-This is due to the fact that, from Apache's file-server point of view, the "PATH\_INFO"
+This is due to the fact that, from Apache's file-server point of view, the <tt>PATH\_INFO</tt>
 environment variable is the file being served (naturally a 404 if the URL doesn't map to a file);
-however, in the application-server sense which php-rack was built to emulate, PATH\_INFO
-represents a path _responded to by code_. This directive rewrites the original
-request URI, setting X\_PRACK_PATHINFO to the original value, which prack uses to create
-an environment. It then hands this environment to the middleware app stack it runs.
+however, in the application-server paradigm (that is, for Prack), <tt>PATH\_INFO</tt>
+represents a path _responded to by code_. This directive rewrites the original request URI,
+setting <tt>REDIRECT_URL</tt> to the original value, which Prack uses while creating the
+request environment. It then hands this environment to the middleware app stack it runs.
+
+The <tt>DirectorySlash Off</tt> directive suppresses Apache's redirecting from an existing
+subdirectory to the same path, with a slash tacked onto the end. This is unnecessary with Prack.
 
 A simple, quick-and-dirty setup might look like this:
 
@@ -98,5 +102,4 @@ with some perfectly useable middleware.
 Acknowledgments
 ===============
 
-Thanks to the Ruby Rack team for all their hard work on Rack, and thanks to the Python folks
-who dreamed up WSGI. And thanks to Matz for making such an amazing language.
+Thanks to the Ruby Rack team for all their hard work on Rack. :) It's hard porting it to PHP!

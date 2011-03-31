@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_Showheaders
+class Sandbox_ShowHeaders
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
@@ -18,7 +18,7 @@ class Sandbox_Showheaders
 		list( $status, $headers, $body ) = $this->middleware_app->call( $env );
 		
 		$response = Prack_Response::with( $body, $status, $headers );
-		if ( $response->isOK() && (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) ) )
+		if ( (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) ) )
 		{
 			ob_start();
 			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], '_headers.html.php' ) ) );
@@ -26,7 +26,7 @@ class Sandbox_Showheaders
 			
 			// Didn't want to fiddle with XQuery. Cheap, I know.
 			$response = Prack_Response::with(
-				preg_replace( '/<body>/', '<body>'.$pretty_env, $body ),
+				preg_replace( '/<\/body>/', $pretty_env.'</body>', $body ),
 				$response->getStatus(),
 				$response->getHeaders()->raw()
 			);

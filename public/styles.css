@@ -5,7 +5,7 @@ body {
 
 #navigation {
 	position: absolute;
-	top: 17.5em;
+	top: 10em;
 	right: 1em;
 	background-color: #ddeeff;
 	border-radius: 1em/5em;
@@ -28,7 +28,7 @@ body {
 
 #runtimes {
 	position: absolute;
-	top: 10.5em;
+	top: 2em;
 	right: 1em;
 	font-style: italic;
 	background-color: #ffdddd;

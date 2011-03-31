@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_Showruntimes
+class Sandbox_ShowRuntimes
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
@@ -20,7 +20,8 @@ class Sandbox_Showruntimes
 		list( $status, $headers, $body ) = $this->middleware_app->call( $env );
 		
 		$response = Prack_Response::with( $body, $status, $headers );
-		if ( $response->isOK() && (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) ) )
+		if ( $response->isOK() && (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) )
+		     && !(bool)preg_match( '/^\/static/', $env[ 'PATH_INFO' ] ) )
 		{
 			$runtime_elements = array();
 			foreach( $this->names as $name )

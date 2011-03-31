@@ -1,5 +1,7 @@
 <style type="text/css">
 #headers-info {
+	background-image: url('/static/stripes.png');
+	background-repeat: repeat-x;
 	width: 100%;
 	background-color: #eeeeee;
 	padding-top: 0.5em;
@@ -9,6 +11,7 @@
 	padding-left: 1em; }
 #headers-info table.header {
     margin-left: 1em;
+    margin-bottom: 1em;
     border:1px solid #ccc; border-collapse: collapse; background:white; width: 80%; }
 #headers-info table.header tbody td, #headers-info tbody th { vertical-align:top; ; }
 #headers-info table.header thead th {
