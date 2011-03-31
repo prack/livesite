@@ -40,3 +40,8 @@ body {
 #body {
 	padding: 1em;
 }
+
+#trollface{
+	text-align: center;
+	min-height: 40em;
+}

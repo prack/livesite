@@ -36,9 +36,10 @@ $domain = Prack_Builder::domain()
     ->run( new Prack_Directory( './public' ) )
 
   ->map( '/admin' )
-    ->using( 'Prack_Auth_Basic'    )->withArgs( 'sandbox admin site' )->andCallback( 'onAuthBasicAuthenticate' )->build()
-    ->using( 'Sandbox_ShowEnv'     )->build()
     ->using( 'Prack_Runtime'       )->withArgs( 'Admin-Site' )->build()
+    ->using( 'Sandbox_Trollface'   )->build()
+    ->using( 'Prack_Auth_Basic'    )->withArgs( 'Protected Sandbox' )->andCallback( 'onAuthBasicAuthenticate' )->build()
+    ->using( 'Sandbox_ShowEnv'     )->build()
     ->run( new Sandbox_Admin() )
 
   ->map( '/thrower' )

@@ -22,11 +22,11 @@ class Sandbox_ShowHeaders
 		{
 			ob_start();
 			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], '_headers.html.php' ) ) );
-			$pretty_env = ob_get_clean();
+			$pretty_headers = ob_get_clean();
 			
 			// Didn't want to fiddle with XQuery. Cheap, I know.
 			$response = Prack_Response::with(
-				preg_replace( '/<\/body>/', $pretty_env.'</body>', $body ),
+				preg_replace( '/<\/body>/', $pretty_headers.'</body>', $body ),
 				$response->getStatus(),
 				$response->getHeaders()->raw()
 			);

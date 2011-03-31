@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_ShowEnv
+class Sandbox_Trollface
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
@@ -17,15 +17,17 @@ class Sandbox_ShowEnv
 	{
 		list( $status, $headers, $body ) = $this->middleware_app->call( $env );
 		
-		$response = Prack_Response::with( $body, $status, $headers );
-		if ( $response->isOK() )
+		if ( !@$env[ 'REMOTE_USER' ] && $status == 401 )
 		{
 			ob_start();
-			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], '_env.html.php' ) ) );
-			$pretty_env = ob_get_clean();
-		
-			// Didn't want to fiddle with XQuery. Cheap, I know.
-			$body = preg_replace( '/<\/h1>/', '</h1>'.$pretty_env, $response->getBody() );
+			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], 'trollface.html.php' ) ) );
+			$trollface = ob_get_clean();
+			
+			$response = Prack_Response::with( $trollface, 200, $headers );
+			$response->set( 'X-Trolled', 'definitely' );
+			$response->set( 'Content-Type', 'text/html' );
+			
+			return $response->finish();
 		}
 		
 		return array( $status, $headers, $body );
