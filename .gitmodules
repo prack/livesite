@@ -1,0 +1,6 @@
+[submodule "lib/php-rack"]
+	path = lib/php-rack
+	url = https://github.com/prack/php-rack.git
+[submodule "lib/php-rb"]
+	path = lib/php-rb
+	url = https://github.com/prack/php-rb.git
