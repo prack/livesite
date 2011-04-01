@@ -74,10 +74,10 @@ Domain
 
 The website, when running, exposes the following applications at domain-level:
 
-* public website, at:                       <br /><pre>/</pre>
-* admin app (l: (anything), p: secret), at: <br /><pre>/admin</pre>
-* static asset server, at:                  <br /><pre>/static</pre>
-* pretty exception handler, at:             <br /><pre>/thrower</pre>
+* public website, at:                       <br /><pre>/livesite/</pre>
+* admin app (l: (anything), p: secret), at: <br /><pre>/livesite/admin</pre>
+* static asset server, at:                  <br /><pre>/livesite/static</pre>
+* pretty exception handler, at:             <br /><pre>/livesite/thrower</pre>
 
 To understand how Prack is working, inspect the displayed "environment information" closely!
 Also, look at the stack built in rackup.php. Change it, too, whatever you want. Prack comes

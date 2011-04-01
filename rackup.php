@@ -19,33 +19,39 @@ function onAuthBasicAuthenticate( $username, $password )
 
 $domain = Prack_Builder::domain()
 
-  ->using( 'Prack_ContentLength'   )->build()
-  ->using( 'Livesite_ShowHeaders'  )->build()
-  ->using( 'Prack_ContentType'     )->withArgs( 'text/html' )->build()
-  ->using( 'Livesite_ShowRuntimes' )->withArgs( array( 'Total', 'Public-Site', 'Admin-Site' ) )->build()
-  ->using( 'Prack_Runtime'         )->withArgs( 'Total' )->build()
-  ->using( 'Prack_Config'          )->withCallback( 'onConfigure' )->build()
-  ->using( 'Prack_ShowExceptions'  )->build()
-  ->using( 'Prack_Etag'            )->build()
+  ->using( 'Prack_ShowExceptions'  )->withArgs( $also = E_ALL & ~E_NOTICE | E_STRICT )->push()
+  ->using( 'Prack_ContentLength'   )->push()
+  ->using( 'Livesite_ShowHeaders'  )->push()
+  ->using( 'Prack_ContentType'     )->withArgs( 'text/html' )->push()
+  ->using( 'Livesite_ShowRuntimes' )->withArgs( array( 'Total', 'Public-Site', 'Admin-Site' ) )->push()
+  ->using( 'Prack_Runtime'         )->withArgs( 'Total' )->push()
+  ->using( 'Prack_Config'          )->withCallback( 'onConfigure' )->push()
+  ->using( 'Prack_Etag'            )->push()
 
-  ->map( '/' )
-    ->using( 'Prack_Runtime' )->withArgs( 'Public-Site' )->build()
-    ->run( new Livesite_Public() )
+  ->map( '/livesite' )
 
-  ->map( '/static' )
-    ->run( new Prack_Directory( './public' ) )
+    ->map( '/' )
+      ->using( 'Prack_Runtime' )->withArgs( 'Public-Site' )->push()
+      ->run( new Livesite_Public() )
+    ->endMap()
 
-  ->map( '/admin' )
-    ->using( 'Prack_Runtime'      )->withArgs( 'Admin-Site' )->build()
-    ->using( 'Livesite_Trollface' )->build()
-    ->using( 'Prack_Auth_Basic'   )->withArgs( 'Livesite Admin Area' )->andCallback( 'onAuthBasicAuthenticate' )->build()
-    ->using( 'Livesite_ShowEnv'   )->build()
-    ->run( new Livesite_Admin() )
+    ->map( '/static' )
+      ->run( new Prack_Directory( './public' ) )
+    ->endMap()
 
-  ->map( '/thrower' )
-    ->run( new Livesite_Thrower() )
+    ->map( '/admin' )
+      ->using( 'Prack_Runtime'      )->withArgs( 'Admin-Site' )->push()
+      ->using( 'Livesite_Trollface' )->push()
+      ->using( 'Prack_Auth_Basic'   )->withArgs( 'Livesite Admin Area' )->andCallback( 'onAuthBasicAuthenticate' )->push()
+      ->using( 'Livesite_ShowEnv'   )->push()
+      ->run( new Livesite_Admin() )
+    ->endMap()
 
-->toMiddlewareApp();
+    ->map( '/thrower' )
+      ->run( new Livesite_Thrower() )
+    ->endMap()
+
+  ->endMap();
 
 // Handling the response:
 

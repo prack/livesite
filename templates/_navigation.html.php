@@ -1,6 +1,6 @@
 <ol id="navigation">
-	<li><a href="/"                  > Public Site      </a></li>
-	<li><a href="/admin"             > Admin Site       </a></li>
-	<li><a href="/static"            > Static Directory </a></li>
-	<li><a href="/thrower"           > Pretty Exception </a></li>
+	<li><a href="/livesite/"        > Public Site      </a></li>
+	<li><a href="/livesite/admin"   > Admin Site       </a></li>
+	<li><a href="/livesite/static"  > Static Directory </a></li>
+	<li><a href="/livesite/thrower" > Pretty Exception </a></li>
 </ol>

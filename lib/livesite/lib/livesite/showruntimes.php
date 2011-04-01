@@ -21,7 +21,7 @@ class Livesite_ShowRuntimes
 		
 		$response = Prack_Response::with( $body, $status, $headers );
 		if ( $response->isOK() && (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) )
-		     && !(bool)preg_match( '/^\/static/', $env[ 'PATH_INFO' ] ) )
+		     && !(bool)preg_match( '/^\/livesite\/static/', $env[ 'PATH_INFO' ] ) )
 		{
 			$runtime_elements = array();
 			foreach( $this->names as $name )

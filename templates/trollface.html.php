@@ -5,12 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head profile="http://www.w3.org/2005/10/profile">
 	<title>what is this i dont even</title>
-	<link rel="stylesheet" href="/static/styles.css" />
+	<link rel="stylesheet" href="/livesite/static/styles.css" />
 </head>
 <body>
 	<?php include "_navigation.html.php"; ?>
 	<div id="trollface">
-		<p><img alt="Problem?" src="/static/trollface.jpg" /></p>
+		<p><img alt="Problem?" src="/livesite/static/trollface.jpg" /></p>
 		<h1>Problem logging in?</h1>
 		<h3>(hint: use any login with the password 'secret')</h3>
 	</div>

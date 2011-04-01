@@ -1,8 +1,8 @@
 <html>
 <head>
 	<title>Livesite Admin Area</title>
-	<link rel="stylesheet" href="/static/styles.css" />
-	<link rel="icon" type="image/png" href="/static/adminfav.png" />
+	<link rel="stylesheet" href="/livesite/static/styles.css" />
+	<link rel="icon" type="image/png" href="/livesite/static/adminfav.png" />
 </head>
 <body>
 	<?php include "_navigation.html.php"; ?>

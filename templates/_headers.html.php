@@ -1,6 +1,6 @@
 <style type="text/css">
 #headers-info {
-	background-image: url('/static/stripes.png');
+	background-image: url('/livesite/static/stripes.png');
 	background-repeat: repeat-x;
 	width: 100%;
 	background-color: #eeeeee;
