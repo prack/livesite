@@ -1,16 +1,17 @@
 _Prack is maturing rapidly, and needs early adopters. It is very well-tested._
 
-Sandbox
-=======
+Livesite
+========
 
-Sandbox is a simple demonstration of how to build your domain as a middleware app
+Livesite is a simple demonstration of how to build your domain as a middleware app
 stack using [php-rack](http://github.com/prack/php-rack).
 
+You can [see it in action](http://php-rack.info/livesite) if you like.
 
 Dependencies
 ============
 
-Sandbox is built on top of [php-rack](http://github.com/prack/php-rack) ("Prack"), which
+Livesite is built on top of [php-rack](http://github.com/prack/php-rack) ("Prack"), which
 is in turn built on top of a primitive-wrapper library called 
 [php-rb](http://github.com/prack/php-rb "Prb Homepage") ("Prb").
 
@@ -18,14 +19,14 @@ Consequently, you'll need to clone both of these into the <tt>lib</tt> subdirect
 
 Other than that, all you'll need to know about Prb is its <tt>Logger</tt>.
 
-Classes
-=======
+Code
+====
 
-Sandbox comes with just a few middleware applications, which are used in the domain
+Livesite comes with just a few middleware applications, which are used in the domain
 created in rackup.php. here they are:
 
 * <tt>Admin</tt>: Responds to admin site requests.
-* <tt>Public</tt>: Responds to public site requests.
+* <tt>Public</tt>: A "public" area for the php-rack-driven site.
 * <tt>ShowEnv</tt>: Displays environment in response, if appropriate.
 * <tt>ShowHeaders</tt>: Displays response header information in response, if appropriate.
 * <tt>ShowRuntimes</tt>: Displays runtime information in response, if appropriate.
@@ -34,24 +35,9 @@ created in rackup.php. here they are:
 Getting started
 ===============
 
-To view the sandbox in action, you'll need:
+To view the livesite in action, you'll need a valid apache instance with php 5.2+ installed.
 
-1. A valid apache instance with php 5.2+ installed.
-2. Knowledge on configuring a host, as there are (unfortunately) a few required
-   apache configuration directives.
-3. Clones of the support libraries in the 'lib/' subdirectory of your clone.
-   You may consider using git submodules for this; or, if you're in a hurry, just clone
-   the repos into your repository directly.
-
-The file structure should look like this:
-
-	- your clone
-	\_lib
-	 \_sandbox  (comes with the clone)
-	 \_php-rack (must be provided to the repository)
-	 \_php-rb   (must be provided to the repository)
-
-And apache must serve this cloned directory configured thusly:
+Apache must serve this cloned code in a (virtual) host configured thusly:
 
 	DirectoryIndex rackup.php
 	DirectorySlash Off
@@ -72,16 +58,15 @@ subdirectory to the same path, with a slash tacked onto the end. This is unneces
 A simple, quick-and-dirty setup might look like this:
 
 	$ cd ~/PHPDev
-	$ git clone git@github.com:prack/sandbox.git sandbox
-	$ cd sandbox
-	$ git clone git@github.com:prack/php-rack.git lib/php-rack
-	$ git clone git@github.com:prack/php-rb.git lib/php-rb
+	$ git clone git@github.com:prack/livesite.git livesite
+	$ cd livesite
+	$ git submodules update --init
 	$ cp /path/to/httpd.conf /path/to/httpd.conf.bak
 	$ vi /path/to/httpd.conf
 	// Edit your host configuration to include the above directives.
 	$ sudo apachectl restart
 
-Barring any errors in your host configuration, your sandbox should run immediately.
+Barring any errors in your host configuration, your livesite should run immediately.
 
 
 Domain

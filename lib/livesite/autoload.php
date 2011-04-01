@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-function __sandbox_autoload( $class_or_interface ) {
+function __livesite_autoload( $class_or_interface ) {
 	$path_components = preg_split( '/_/', $class_or_interface );
 	$path_components = array_map( 'strtolower', $path_components );
 	
@@ -12,4 +12,4 @@ function __sandbox_autoload( $class_or_interface ) {
 		include $abs;
 }
 
-spl_autoload_register( '__sandbox_autoload', true );
+spl_autoload_register( '__livesite_autoload', true );

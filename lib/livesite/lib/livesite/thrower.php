@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_Thrower
+class Livesite_Thrower
   implements Prack_I_MiddlewareApp
 {
 	// TODO: Document!

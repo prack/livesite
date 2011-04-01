@@ -22,7 +22,7 @@
 </style>
 
 <div id="headers-info">
-	<h3 class="info">Response Headers (final Content-Length will vary):</h2>
+	<h3 class="info">Response Headers (final Content-Length will vary):</h3>
 	<table class="header">
 	  <thead>
 	    <tr>

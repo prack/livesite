@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_ShowHeaders
+class Livesite_ShowHeaders
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
@@ -21,7 +21,7 @@ class Sandbox_ShowHeaders
 		if ( (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) ) )
 		{
 			ob_start();
-			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], '_headers.html.php' ) ) );
+			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'livesite.templates' ], '_headers.html.php' ) ) );
 			$pretty_headers = ob_get_clean();
 			
 			// Didn't want to fiddle with XQuery. Cheap, I know.

@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_ShowEnv
+class Livesite_ShowEnv
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
@@ -21,7 +21,7 @@ class Sandbox_ShowEnv
 		if ( $response->isOK() )
 		{
 			ob_start();
-			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], '_env.html.php' ) ) );
+			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'livesite.templates' ], '_env.html.php' ) ) );
 			$pretty_env = ob_get_clean();
 		
 			// Didn't want to fiddle with XQuery. Cheap, I know.

@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_Admin
+class Livesite_Admin
   implements Prack_I_MiddlewareApp
 {
 	private $body;
@@ -12,7 +12,7 @@ class Sandbox_Admin
 		$user = $env[ 'REMOTE_USER' ];
 		
 		ob_start();
-		  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], 'admin.html.php' ) ) );
+		  include( join( DIRECTORY_SEPARATOR, array( $env[ 'livesite.templates' ], 'admin.html.php' ) ) );
 		$output = ob_get_clean();
 		
 		return array( 200, array(), $output );

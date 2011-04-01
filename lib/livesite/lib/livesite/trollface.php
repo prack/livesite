@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Document!
-class Sandbox_Trollface
+class Livesite_Trollface
   implements Prack_I_MiddlewareApp
 {
 	private $middleware_app;
@@ -20,7 +20,7 @@ class Sandbox_Trollface
 		if ( !@$env[ 'REMOTE_USER' ] && $status == 401 )
 		{
 			ob_start();
-			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'sandbox.templates' ], 'trollface.html.php' ) ) );
+			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'livesite.templates' ], 'trollface.html.php' ) ) );
 			$trollface = ob_get_clean();
 			
 			$response = Prack_Response::with( $trollface, 200, $headers );
