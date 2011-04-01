@@ -3,4 +3,3 @@ coverage
 doc
 phpunit.xml
 .DS_Store
-lib/php-*
