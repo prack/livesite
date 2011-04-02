@@ -6,7 +6,7 @@ Livesite
 Livesite is a simple demonstration of how to build your domain as a middleware app
 stack using [php-rack](http://github.com/prack/php-rack).
 
-You can [see it in action](http://php-rack.info/livesite) if you like.
+You can [see it in action](http://php-rack.info/livesite/) if you like.
 
 Dependencies
 ============
