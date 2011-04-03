@@ -8,11 +8,15 @@
 	<link rel="stylesheet" href="/livesite/static/styles.css" />
 </head>
 <body>
-	<?php include "_navigation.html.php"; ?>
-	<div id="trollface">
+	<div id="floaters">
+		<?php include "_navigation.html.php"; ?>
+	</div>
+	<div id="content" class="trollface">
 		<p><img alt="Problem?" src="/livesite/static/trollface.jpg" /></p>
 		<h1>Problem logging in?</h1>
 		<h3>(hint: use any login with the password 'secret')</h3>
+	</div>
+	<div id="diagnostics">
 	</div>
 </body>
 </html>

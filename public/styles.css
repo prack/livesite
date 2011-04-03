@@ -1,6 +1,5 @@
 body {
 	margin: 0;
-	position: relative;
 }
 
 #navigation {
@@ -26,22 +25,24 @@ body {
 	padding-left: 0.3em;
 }
 
-#runtimes {
-	position: absolute;
-	top: 2em;
-	right: 1em;
-	font-style: italic;
-	background-color: #ffdddd;
-	border-radius: 1em/5em;
-	padding: 1em;
-	list-style: none;
-}
-
-#body {
-	padding: 1em;
-}
-
-#trollface{
+#content.trollface {
 	text-align: center;
 	min-height: 40em;
+}
+
+#content {
+	border-bottom: thick solid black;
+	padding-top: 2em;
+	padding-left: 2em;
+}
+
+#content.admin {
+	min-height: 18em;
+}
+
+#content.public {
+}
+
+#diagnostics {
+	background-image: url('/livesite/static/stripes.png');
 }

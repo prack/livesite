@@ -23,20 +23,20 @@ class Livesite_ShowRuntimes
 		if ( $response->isOK() && (bool)preg_match( '/text\/html/', $response->get( 'Content-Type' ) )
 		     && !(bool)preg_match( '/^\/livesite\/static/', $env[ 'PATH_INFO' ] ) )
 		{
-			$runtime_elements = array();
+			$timers = array();
 			foreach( $this->names as $name )
 			{
 				$full_name = 'X-Runtime-'.$name;
-				if ( @$response->get( $full_name ) )
-					array_push( $runtime_elements, "<li class=\"runtime\" id=\"".$name."\">'{$name}' time: ".$response->get( $full_name )." seconds</li>" );
+				if ( $time = @$response->get( $full_name ) )
+					$timers[ $name ] = $time;
 			}
 			
+			ob_start();
+			  include( join( DIRECTORY_SEPARATOR, array( $env[ 'livesite.templates' ], '_runtimes.html.php' ) ) );
+			$pretty_runtimes = ob_get_clean();
+
 			// Didn't want to fiddle with XQuery. Cheap, I know.
-			$body = preg_replace(
-			  '/<body>/',
-			  '<body><ol id="runtimes">'.join( '', $runtime_elements ).'</ol>',
-			  $response->getBody()
-			);
+			$body = preg_replace( '/<div id="floaters">/', '<div id="floaters">'.$pretty_runtimes, $response->getBody() );
 		}
 		else
 			$body = $response->getBody();

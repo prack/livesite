@@ -1,9 +1,7 @@
 <style type="text/css">
 #headers-info {
-	background-image: url('/livesite/static/stripes.png');
 	background-repeat: repeat-x;
 	width: 100%;
-	background-color: #eeeeee;
 	padding-top: 0.5em;
 	min-height: 10em; }
 #headers-info h3.info {

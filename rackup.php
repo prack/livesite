@@ -21,6 +21,7 @@ $domain = Prack_Builder::domain()
 
   ->using( 'Prack_ShowExceptions'  )->withArgs( $also = E_ALL & ~E_NOTICE | E_STRICT )->push()
   ->using( 'Prack_ContentLength'   )->push()
+  ->using( 'Livesite_ShowEnv'      )->push()
   ->using( 'Livesite_ShowHeaders'  )->push()
   ->using( 'Prack_ContentType'     )->withArgs( 'text/html' )->push()
   ->using( 'Livesite_ShowRuntimes' )->withArgs( array( 'Total', 'Public-Site', 'Admin-Site' ) )->push()
@@ -35,20 +36,19 @@ $domain = Prack_Builder::domain()
       ->run( new Livesite_Public() )
     ->endMap()
 
+    ->map( '/arachnid' )
+      ->run( new Prack_Arachnid() )
+    ->endMap()
+
     ->map( '/static' )
-      ->run( new Prack_Directory( './public' ) )
+      ->run( new Prack_Directory( 'public' ) )
     ->endMap()
 
     ->map( '/admin' )
       ->using( 'Prack_Runtime'      )->withArgs( 'Admin-Site' )->push()
       ->using( 'Livesite_Trollface' )->push()
       ->using( 'Prack_Auth_Basic'   )->withArgs( 'Livesite Admin Area' )->andCallback( 'onAuthBasicAuthenticate' )->push()
-      ->using( 'Livesite_ShowEnv'   )->push()
       ->run( new Livesite_Admin() )
-    ->endMap()
-
-    ->map( '/thrower' )
-      ->run( new Livesite_Thrower() )
     ->endMap()
 
   ->endMap();

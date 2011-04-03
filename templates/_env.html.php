@@ -28,8 +28,8 @@
     </thead>
     <tbody>
         <?php
-          uksort( $env, 'strnatcasecmp' );
-          foreach( $env as $key => $val ):
+          uksort( $display_env, 'strnatcasecmp' );
+          foreach( $display_env as $key => $val ):
         ?>
         <tr>
           <td><?php echo Prack_Utils::singleton()->escapeHTML( $key ); ?></td>

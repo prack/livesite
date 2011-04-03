@@ -26,7 +26,7 @@ class Livesite_ShowHeaders
 			
 			// Didn't want to fiddle with XQuery. Cheap, I know.
 			$response = Prack_Response::with(
-				preg_replace( '/<\/body>/', $pretty_headers.'</body>', $body ),
+				preg_replace( '/<div id="diagnostics">/', '<div id="diagnostics">'.$pretty_headers, $body ),
 				$response->getStatus(),
 				$response->getHeaders()->raw()
 			);
